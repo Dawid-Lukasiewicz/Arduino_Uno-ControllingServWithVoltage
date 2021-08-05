@@ -1,12 +1,10 @@
 #include <LiquidCrystal.h>
 #include <Servo.h>
 
-#define LED_amount 4
+#define LED_amount 5
 
 LiquidCrystal lcd(13, 12, 11, 10, 8, 7);
 Servo serv;
-
-// volatile int Divisor = 1024 / LED_amount;
 
 void setup()
 {
@@ -22,7 +20,6 @@ void loop()
 {
     // ADC read
     uint16_t ADC_Value = analogRead(PIN_A0);
-    uint8_t LED_level = map(ADC_Value, 0, 1023, 0, 5);
 
     // Serv control with ADC
     uint8_t Angle = map(ADC_Value, 0, 1023, 0, 180);
@@ -36,12 +33,54 @@ void loop()
     lcd.print(" V");
 
     // LED visualization
-    for (uint8_t i = 0; i <= 0 + LED_amount - 1; i++)
+    uint16_t LED_light = map(ADC_Value, 0, 1023, 0, LED_amount * 100);
+    if (LED_light < 75)
     {
-        digitalWrite(i, LOW);
+        digitalWrite(0, LOW);
+        digitalWrite(1, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(4, LOW);
     }
-    for (uint8_t i = 0; i <= 0 + LED_level - 1; i++)
+
+    else if (LED_light < 125 && LED_light > 75)
     {
-        digitalWrite(i, HIGH);
+        digitalWrite(0, HIGH);
+        digitalWrite(1, LOW);
+        digitalWrite(2, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(4, LOW);
+    }
+    else if (LED_light < 225 && LED_light > 175)
+    {
+        digitalWrite(0, HIGH);
+        digitalWrite(1, HIGH);
+        digitalWrite(2, LOW);
+        digitalWrite(3, LOW);
+        digitalWrite(4, LOW);
+    }
+    else if (LED_light < 325 && LED_light > 275)
+    {
+        digitalWrite(0, HIGH);
+        digitalWrite(1, HIGH);
+        digitalWrite(2, HIGH);
+        digitalWrite(3, LOW);
+        digitalWrite(4, LOW);
+    }
+    else if (LED_light < 425 && LED_light > 375)
+    {
+        digitalWrite(0, HIGH);
+        digitalWrite(1, HIGH);
+        digitalWrite(2, HIGH);
+        digitalWrite(3, HIGH);
+        digitalWrite(4, LOW);
+    }
+    else if (LED_light < 525 && LED_light > 475)
+    {
+        digitalWrite(0, HIGH);
+        digitalWrite(1, HIGH);
+        digitalWrite(2, HIGH);
+        digitalWrite(3, HIGH);
+        digitalWrite(4, HIGH);
     }
 }
