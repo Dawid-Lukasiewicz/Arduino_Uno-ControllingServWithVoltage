@@ -1,6 +1,6 @@
 ## Arduino_Uno-Controlling Servomechanism With Voltage
 
-## Breif description of functionality
+## Brief description of functionality
 Servomechanism is controlled by manipulating voltage measured by ADC converter. The value of voltage is changed with potentiometer. Additionally the voltage measurement is displayed on LCD dispplayer and layers of voltage increase/decrease is presented woth 5 LEDs
 ## images
 Every image presents a different voltage value which results in turning the servomechanism's arm and turning on a LED when reaching threshold
