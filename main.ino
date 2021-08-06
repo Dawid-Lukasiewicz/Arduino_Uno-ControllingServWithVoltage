@@ -2,6 +2,7 @@
 #include <Servo.h>
 
 #define LED_amount 5
+#define LED_start 1
 
 LiquidCrystal lcd(13, 12, 11, 10, 8, 7);
 Servo serv;
@@ -34,11 +35,11 @@ void loop()
 
     // LED visualization
     uint8_t LED_level = map(ADC_Value, 0, 1024, 0, 6);
-    for (uint8_t i = 0; i <= 0 + LED_amount - 1; i++)
+    for (uint8_t i = LED_start; i <= LED_start + LED_amount - 1; i++)
     {
         digitalWrite(i, LOW);
     }
-    for (uint8_t i = 0; i <= 0 + LED_level - 1; i++)
+    for (uint8_t i = LED_start; i <= LED_start + LED_level - 1; i++)
     {
         digitalWrite(i, HIGH);
     }
